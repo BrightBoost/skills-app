@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Admin Page</title>
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="main.html">Home</a>
+        <a href="skillList.html">My Skills</a>
+    </nav>
+
+    <main>
+        <h1>Admin Page</h1>
+
+        <section id="user-management">
+            <h2>User Management</h2>
+            <div id="users-list"></div>
+            <form id="user-form" onsubmit="return false;">
+                <label for="new-username">Username:</label>
+                <input type="text" id="new-username" placeholder="Username" required>
+                <br>
+                <label for="new-password">Password:</label>
+                <input type="password" id="new-password" placeholder="Password" required>
+                <button type="submit" id="btn-add-user">Add User</button>
+            </form>
+
+        </section>
+
+        <section id="skill-management">
+            <h2>Skill Management</h2>
+            <label for="user-select">Select User:</label>
+            <select id="user-select">
+                <option value="">Please choose a user...</option>
+            </select>
+            <div id="skills-list"></div>
+            <form id="skill-form" onsubmit="return false;">
+                <label for="new-skill">New Skill:</label>
+                <input type="text" id="new-skill" placeholder="New Skill" required>
+                <button type="submit" id="btn-add-skill">Add Skill</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 SkillsApp. All rights reserved.</p>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

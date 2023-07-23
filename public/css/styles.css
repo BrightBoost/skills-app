@@ -1,0 +1,118 @@
+/* Primary colors */
+:root {
+    --primary-light: #FF1675;
+    --primary-dark: #130F25;
+    /* Secondary colors */
+    --secondary-blue: #00A3FF;
+    --secondary-purple: #770EF7;
+    --secondary-yellow: #FFC942;
+    --secondary-orange: #FF7B01;
+}
+
+body {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+    font-family: Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--secondary-blue);
+}
+
+button {
+    background-color: var(--secondary-purple);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--secondary-yellow);
+}
+
+a {
+    color: var(--secondary-orange);
+}
+
+a:hover {
+    color: var(--primary-light);
+}
+
+form {
+    background-color: var(--primary-dark);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+input,
+select,
+textarea {
+    width: 30%;
+    padding: 12px;
+    border: 1px solid var(--primary-light);
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    color: var(--primary-light);
+    background-color: var(--primary-dark);
+}
+
+input[type=submit] {
+    background-color: var(--secondary-blue);
+    color: white;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: var(--secondary-purple);
+}
+
+/* NavBar styling */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-light);
+    color: #FFF;
+    padding: 10px 20px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+    color: #FFF;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+nav a:last-child {
+    margin-right: 0;
+}
+
+nav a:hover {
+    color: var(--secondary-yellow);
+}
+
+/* Footer styling */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-light);
+    color: #FFF;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    margin: 0;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "skills-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js application to manage skills",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server/app.js"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "skills"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0"
+  }
+}

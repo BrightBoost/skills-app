@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Add Skill</title>
+</head>
+
+<body>
+    <!-- nav -->
+    <nav id="navbar">
+        <a href="main.html">Home</a>
+        <a href="skillList.html">View Skills</a>
+        <button id="logout">Logout</button>
+    </nav>
+
+    <!-- add skill form -->
+    <section id="add-skill">
+        <form id="add-skill-form">
+            <h2>Add Skill</h2>
+            <label for="skill-name">Skill Name:</label>
+            <input type="text" id="skill-name" name="skill-name" required>
+            <input type="submit" value="Add Skill">
+        </form>
+        <div id="message"></div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <p>&copy; 2023 SkillsApp. All rights reserved.</p>
+    </footer>
+
+    <script src="js/skills.js"></script>
+</body>
+
+</html>
