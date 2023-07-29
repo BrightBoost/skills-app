@@ -12,6 +12,8 @@
     <nav id="navbar">
         <a href="main.html">Home</a>
         <a href="skillList.html">My Skills</a>
+        <a href="skillForm.html">Add My Skills</a>
+        <button id="logout">Logout</button>
     </nav>
 
     <main>
@@ -26,11 +28,12 @@
                 <br>
                 <label for="new-password">Password:</label>
                 <input type="password" id="new-password" placeholder="Password" required>
+                <br>
                 <button type="submit" id="btn-add-user">Add User</button>
             </form>
 
         </section>
-
+        <hr>
         <section id="skill-management">
             <h2>Skill Management</h2>
             <label for="user-select">Select User:</label>
@@ -41,6 +44,7 @@
             <form id="skill-form" onsubmit="return false;">
                 <label for="new-skill">New Skill:</label>
                 <input type="text" id="new-skill" placeholder="New Skill" required>
+                <br>
                 <button type="submit" id="btn-add-skill">Add Skill</button>
             </form>
         </section>

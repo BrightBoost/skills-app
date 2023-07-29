@@ -13,6 +13,7 @@ body {
     background-color: var(--primary-dark);
     color: var(--primary-light);
     font-family: Arial, sans-serif;
+    margin: 0;
 }
 
 h1,
@@ -24,13 +25,24 @@ h6 {
     color: var(--secondary-blue);
 }
 
-button {
+h1 {
+    margin-left: 20px;
+}
+
+button,
+input[type=submit].btn {
     background-color: var(--secondary-purple);
     color: white;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: auto;
+}
+
+input[type=submit].btn, #btn-add-skill, #btn-add-user {
+    width: 20%;
+    margin-left: 20%;
 }
 
 button:hover {
@@ -47,8 +59,16 @@ a:hover {
 
 form {
     background-color: var(--primary-dark);
-    padding: 20px;
     border-radius: 5px;
+}
+
+section {
+    padding: 20px;
+    justify-content: center;
+}
+
+select {
+    box-sizing: content-box;
 }
 
 input,
@@ -62,6 +82,12 @@ textarea {
     resize: vertical;
     color: var(--primary-light);
     background-color: var(--primary-dark);
+    border-radius: 4px;
+}
+
+label {
+    display: inline-block;
+    width: 20%;
 }
 
 input[type=submit] {
@@ -76,6 +102,7 @@ input[type=submit]:hover {
 
 /* NavBar styling */
 nav {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -115,4 +142,11 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    background-color: #FF1675;
+    margin: 2%;
 }
