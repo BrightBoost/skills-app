@@ -40,7 +40,9 @@ input[type=submit].btn {
     margin-right: auto;
 }
 
-input[type=submit].btn, #btn-add-skill, #btn-add-user {
+input[type=submit].btn,
+#btn-add-skill,
+#btn-add-user {
     width: 20%;
     margin-left: 20%;
 }

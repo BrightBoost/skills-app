@@ -1,34 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    // Handle logout
     const logoutButton = document.getElementById("logout");
+    logoutButton.addEventListener("click", () => logout(currentUser));
+
+    checkLoggedInUser();
+    handlePage(currentUser);
+    updateNavbar();
+});
+
+function checkLoggedInUser() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!currentUser) {
         // If no user is logged in, redirect to the login page
         window.location.href = "main.html";
         return;
     }
-
-    // Handle logout
-    logoutButton.addEventListener("click", () => logout(currentUser));
-
-    // Handle skill list page
-    if (window.location.pathname.endsWith("skillList.html")) {
-        renderSkillListPage();
-    }
-
-    // Handle add skill page
-    if (window.location.pathname.endsWith("skillForm.html")) {
-
-        const addSkillForm = document.getElementById("add-skill-form");
-
-        addSkillForm.addEventListener("submit", (event) => {
-            event.preventDefault(); 
-            addSkill(currentUser);
-        });
-    }
-
-    updateNavbar();
-});
+}
 
 function logout(currentUser) {
     fetch("http://localhost:3000/api/user/logout", {
@@ -50,6 +39,24 @@ function logout(currentUser) {
         .catch(error => {
             console.error("Error:", error);
         });
+}
+
+function handlePage(currentUser) {
+    // Handle skill list page
+    if (window.location.pathname.endsWith("skillList.html")) {
+        renderSkillListPage();
+    }
+
+    // Handle add skill page
+    if (window.location.pathname.endsWith("skillForm.html")) {
+
+        const addSkillForm = document.getElementById("add-skill-form");
+
+        addSkillForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            addSkill(currentUser);
+        });
+    }
 }
 
 function addSkill(currentUser) {

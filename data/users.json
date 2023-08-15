@@ -1,36 +1,37 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "username": "user1",
-            "password": "password1",
-            "isAdmin": false,
-            "skills": [
-                "JavaScript",
-                "HTML",
-                "CSS"
-            ]
-        },
-        {
-            "id": 2,
-            "username": "user2",
-            "password": "password2",
-            "isAdmin": false,
-            "skills": [
-                "Python",
-                "Data Analysis"
-            ]
-        },
-        {
-            "id": 3,
-            "username": "admin",
-            "password": "admin",
-            "isAdmin": true,
-            "skills": [
-                "JavaScript",
-                "Python",
-                "Project Management"
-            ]
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "username": "user1",
+      "password": "password1",
+      "isAdmin": false,
+      "skills": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Python"
+      ]
+    },
+    {
+      "id": 2,
+      "username": "user2",
+      "password": "password2",
+      "isAdmin": false,
+      "skills": [
+        "Python",
+        "Data Analysis"
+      ]
+    },
+    {
+      "id": 3,
+      "username": "admin",
+      "password": "admin",
+      "isAdmin": true,
+      "skills": [
+        "JavaScript",
+        "Python",
+        "Project Management"
+      ]
+    }
+  ]
 }
