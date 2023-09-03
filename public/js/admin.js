@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Fetch skills of the selected user and populate the skills list
     userSelect.addEventListener('change', (event) => {
-        const username = event.target.value;
-        renderSkillsForUser(username, userSelect);
+        const userId = event.target.value;
+        renderSkillsForUser(userId, userSelect);
     });
 
     // Add event listener to the Add User form
@@ -33,7 +33,7 @@ function populateUserList(userSelect) {
     const usersList = document.getElementById('users-list');
 
     // Fetch users and populate the users list and user select
-    fetch('http://localhost:3000/api/admin/users', {
+    fetch('/api/admin/users', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ function populateUserList(userSelect) {
 
                 // populate the user select
                 const option = document.createElement('option');
-                option.value = user.username;
+                option.value = user.id;
                 option.text = user.username;
                 userSelect.appendChild(option);
             });
@@ -60,10 +60,10 @@ function populateUserList(userSelect) {
         .catch((error) => console.error('Error:', error));
 }
 
-function renderSkillsForUser(username) {
+function renderSkillsForUser(userId) {
     const skillsList = document.getElementById('skills-list');
 
-    fetch(`http://localhost:3000/api/admin/user/${username}/skills`, {
+    fetch(`/api/admin/user/${userId}/skills`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ function addUser() {
     const username = document.getElementById('new-username').value;
     const password = document.getElementById('new-password').value;
 
-    fetch('http://localhost:3000/api/admin/users', {
+    fetch('/api/admin/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ function addUser() {
 function addSkill(userSelect) {
     const skill = document.getElementById('new-skill').value;
 
-    fetch(`http://localhost:3000/api/admin/user/${userSelect.value}/skills`, {
+    fetch(`/api/admin/user/${userSelect.value}/skills`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

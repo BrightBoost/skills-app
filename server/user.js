@@ -7,9 +7,13 @@ const userRouter = express.Router();
 // User login
 userRouter.post('/login', function (req, res) {
     const { username, password } = req.body;
+    // Not how you would do this in a real environment!
     const user = data.getUser(username, password);
     if (user) {
-        res.json({ status: 'success', user });
+        req.session.username = user.username;
+        req.session.userId = user.id;
+        console.log(req.sessionID);
+        res.send({ status: 'success', user: user,  sessionID: req.sessionID});
     } else {
         res.json({ status: 'fail', message: 'Invalid username or password' });
     }
@@ -17,20 +21,22 @@ userRouter.post('/login', function (req, res) {
 
 // User logout
 userRouter.post('/logout', function (req, res) {
-    res.json({ status: 'success', message: 'User logged out successfully' });
-});
+    req.session.destroy(function(err) {
+        console.log('User logged out')
+     })
+    res.redirect('/');});
 
-// Get the skills of the logged-in user
-userRouter.get('/:username/skills', function (req, res) {
-    const username = req.params.username;
-    const skills = data.getSkills(username);
+// Get the skills of the loggedin user
+userRouter.get('/skills', function (req, res) {
+    console.log("Getting skills for user with id: " + req.session.userId);
+    const skills = data.getSkills(req.session.userId);
     res.json({ status: 'success', skills });
 });
 
 // Add a skill to the logged-in user
 userRouter.post('/skills', function (req, res) {
-    const { username, skill } = req.body;
-    data.addSkill(username, skill);
+    const { skill } = req.body;
+    data.addSkill(req.session.userId, skill);
     res.json({ status: 'success', message: 'Skill added successfully' });
 });
 

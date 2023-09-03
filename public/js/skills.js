@@ -20,12 +20,12 @@ function checkLoggedInUser() {
 }
 
 function logout(currentUser) {
-    fetch("http://localhost:3000/api/user/logout", {
+    fetch("/api/user/logout", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username: currentUser.username })
+        credentials: 'include'
     })
         .then(response => response.json())
         .then(data => {
@@ -59,17 +59,18 @@ function handlePage(currentUser) {
     }
 }
 
-function addSkill(currentUser) {
+function addSkill() {
 
     const messageDiv = document.getElementById("message");
     const skillName = document.getElementById("skill-name").value;
 
-    fetch("http://localhost:3000/api/user/skills", {
+    fetch("/api/user/skills", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username: currentUser.username, skill: skillName })
+        body: JSON.stringify({ skill: skillName }),
+        credentials: 'include'
     })
         .then(response => {
             if (!response.ok) { // if HTTP-status is 200-299
@@ -93,36 +94,34 @@ function addSkill(currentUser) {
 function renderSkillListPage() {
     const skillsList = document.getElementById("skills-list");
 
-    // Get username from local storage
+    // Get username from local storage for log message
     let user = JSON.parse(localStorage.getItem('currentUser'));
-    if (user) {
-        let username = user.username;
+    console.log("Getting skills for " + user.username);
 
-        fetch(`http://localhost:3000/api/user/${username}/skills`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
+    fetch(`/api/user/skills`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: 'include'
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                data.skills.forEach(skill => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = skill;
+                    skillsList.appendChild(listItem);
+                });
+            } else {
+                console.error("Error getting skills:", data.message);
             }
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    data.skills.forEach(skill => {
-                        const listItem = document.createElement("li");
-                        listItem.textContent = skill;
-                        skillsList.appendChild(listItem);
-                    });
-                } else {
-                    console.error("Error getting skills:", data.message);
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
-    } else {
-        console.error("No user is logged in.");
-    }
+        .catch(error => {
+            console.error("Error:", error);
+        });
 }
+
 function updateNavbar() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
     const navbar = document.getElementById('navbar');

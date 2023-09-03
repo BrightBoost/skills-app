@@ -10,7 +10,7 @@ function onSubmitLoginForm(event) {
     const password = document.getElementById("password").value;
     const messageDiv = document.getElementById("message");
 
-    fetch("http://localhost:3000/api/user/login", {
+    fetch("/api/user/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -22,6 +22,7 @@ function onSubmitLoginForm(event) {
             if (data.status === "success") {
                 // Save the user to localStorage and redirect to the skillList page
                 localStorage.setItem("currentUser", JSON.stringify(data.user));
+                localStorage.setItem("sessionID", JSON.stringify(data.sessionID));
                 window.location.href = "skillList.html";
             } else {
                 // Show the error message
