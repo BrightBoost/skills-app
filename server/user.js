@@ -13,7 +13,7 @@ userRouter.post('/login', function (req, res) {
         req.session.username = user.username;
         req.session.userId = user.id;
         console.log(req.sessionID);
-        res.send({ status: 'success', user: user,  sessionID: req.sessionID});
+        res.send({ status: 'success', user: user, sessionID: req.sessionID });
     } else {
         res.json({ status: 'fail', message: 'Invalid username or password' });
     }
@@ -21,10 +21,11 @@ userRouter.post('/login', function (req, res) {
 
 // User logout
 userRouter.post('/logout', function (req, res) {
-    req.session.destroy(function(err) {
+    req.session.destroy(function (err) {
         console.log('User logged out')
-     })
-    res.redirect('/');});
+    })
+    res.json({ status: 'success', message: 'Logged out successfully' });
+});
 
 // Get the skills of the loggedin user
 userRouter.get('/skills', function (req, res) {

@@ -124,3 +124,26 @@ function addSkill(userSelect) {
         .catch(error => console.error('Error:', error));
 
 }
+
+
+function logout(currentUser) {
+    fetch("/api/user/logout", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: 'include'
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                localStorage.removeItem("currentUser");
+                window.location.href = "main.html";
+            } else {
+                console.error("Error logging out:", data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+}
