@@ -63,8 +63,8 @@ function addSkill() {
 
     const messageDiv = document.getElementById("message");
     const skillName = document.getElementById("skill-name").value;
-
-    fetch("/api/user/skills", {
+    // intentionally calling non-existing endpoint to demonstrate network tab
+    fetch("/api/user/skill", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
