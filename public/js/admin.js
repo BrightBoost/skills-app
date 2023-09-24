@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    const userSelect = document.getElementById('user-select');
+    // intentional error .value to cause type error later on
+    const userSelect = document.getElementById('user-select').value;
     const newUserForm = document.getElementById('user-form');
     const newSkillForm = document.getElementById('skill-form');
 
