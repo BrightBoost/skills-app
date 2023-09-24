@@ -125,8 +125,8 @@ function renderSkillListPage() {
 function updateNavbar() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
     const navbar = document.getElementById('navbar');
-
-    if (user && user.isAdmin) {
+    // intentional error || instead of &&
+    if (user || user.isAdmin) {
         const adminLink = document.createElement('a');
         adminLink.href = 'admin.html'; // Set the correct link to your admin page
         adminLink.textContent = 'Admin Page';
