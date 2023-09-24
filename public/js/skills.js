@@ -59,36 +59,35 @@ function handlePage(currentUser) {
     }
 }
 
-function addSkill() {
-
+async function addSkill() {
     const messageDiv = document.getElementById("message");
     const skillName = document.getElementById("skill-name").value;
 
-    fetch("/api/user/skills", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ skill: skillName }),
-        credentials: 'include'
-    })
-        .then(response => {
-            if (!response.ok) { // if HTTP-status is 200-299
-                // get the error message from the body or default to response statusText
-                throw new Error(response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.status === "success") {
-                messageDiv.textContent = "Skill added successfully!";
-            } else {
-                messageDiv.textContent = data.message;
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
+    try {
+        const response = fetch("/api/user/skills", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ skill: skillName }),
+            credentials: 'include'
         });
+
+        // Bug: We forgot to await the fetch call, so response will be a Promise, not the actual response object.
+        if (!response.ok) { // if HTTP-status is 200-299
+            // get the error message from the body or default to response statusText
+            throw new Error(response.statusText);
+        }
+
+        const data = response.json();  // Bug: response is still a Promise, not the actual response object.
+        if (data.status === "success") {
+            messageDiv.textContent = "Skill added successfully!";
+        } else {
+            messageDiv.textContent = data.message;
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
 }
 
 function renderSkillListPage() {
