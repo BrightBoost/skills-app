@@ -111,6 +111,12 @@ function renderSkillListPage() {
                 data.skills.forEach(skill => {
                     const listItem = document.createElement("li");
                     listItem.textContent = skill;
+                    listItem.id = skill;
+                    // adding delete button but "forgetting" event handler
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.innerHTML = "Delete";
+                    //deleteBtn.addEventListener("click", deleteSkill);
+                    listItem.appendChild(deleteBtn);
                     skillsList.appendChild(listItem);
                 });
             } else {
@@ -132,4 +138,10 @@ function updateNavbar() {
         adminLink.textContent = 'Admin Page';
         navbar.appendChild(adminLink);
     }
+}
+
+function deleteSkill(e) {
+    const idToDelete = e.target.parentElement.id;
+    document.getElementById(idToDelete).remove();
+    // NOTE: not deleting it on the backend yet
 }
