@@ -52,11 +52,17 @@ function handlePage(currentUser) {
 
         const addSkillForm = document.getElementById("add-skill-form");
 
-        addSkillForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            addSkill(currentUser);
-        });
+        addSkillForm.addEventListener("submit", (event) => handleSubmit(event, currentUser));
     }
+}
+
+// Create a named function for the event listener
+function handleSubmit(event, currentUser) {
+    event.preventDefault();
+    addSkill(currentUser);
+    // Intentional error call to the handlePage again, for refreshing purposes
+    // but accidentally assigning double event handlers
+    handlePage();
 }
 
 function addSkill() {
