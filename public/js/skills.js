@@ -60,9 +60,9 @@ function handlePage(currentUser) {
 }
 
 function addSkill() {
-
     const messageDiv = document.getElementById("message");
     const skillName = document.getElementById("skill-name").value;
+    let skillAdded = false;
 
     fetch("/api/user/skills", {
         method: "POST",
@@ -72,24 +72,27 @@ function addSkill() {
         body: JSON.stringify({ skill: skillName }),
         credentials: 'include'
     })
-        .then(response => {
-            if (!response.ok) { // if HTTP-status is 200-299
-                // get the error message from the body or default to response statusText
-                throw new Error(response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.status === "success") {
-                messageDiv.textContent = "Skill added successfully!";
-            } else {
-                messageDiv.textContent = data.message;
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+    .then(response => {
+        if (!response.ok) { // if HTTP-status is 200-299
+            // get the error message from the body or default to response statusText
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === "success") {
+            skillAdded = true;
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+    // Intentional error
+    // This log statement will execute before the fetch operation completes,
+    // so skillAdded will still be false.
+    console.log('Was the skill added?', skillAdded);  // Outputs: Was the skill added? false
 }
+
 
 function renderSkillListPage() {
     const skillsList = document.getElementById("skills-list");
