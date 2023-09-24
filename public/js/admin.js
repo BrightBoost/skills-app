@@ -41,7 +41,8 @@ function populateUserList(userSelect) {
     })
         .then((response) => response.json())
         .then((data) => {
-            usersList.innerHTML = "";
+            // intentional typo to demonstrate reference error
+            usersLit.innerHTML = "";
             userSelect.innerHTML = "";
 
             data.users.forEach((user) => {
