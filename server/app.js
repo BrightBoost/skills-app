@@ -4,7 +4,8 @@ const session = require('express-session');
 const cors = require('cors');
 const user = require('./user');
 const admin = require('./admin');
-
+ // intentional broken import
+ const newFeature = require('./newFaeture');
 
 const app = express();
 

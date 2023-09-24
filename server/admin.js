@@ -2,6 +2,7 @@ const express = require('express');
 const adminRouter = express.Router();
 const data = require('./data');
 
+
 // Check if the user is admin
 function checkIfLoggedInUserIsAdmin(req) {
     const users = readUsersData();
