@@ -1,3 +1,6 @@
+// Array that will be causing a memory leak
+let elementsArray = [];
+
 document.addEventListener('DOMContentLoaded', (event) => {
     const userSelect = document.getElementById('user-select');
     const newUserForm = document.getElementById('user-form');
@@ -55,6 +58,10 @@ function populateUserList(userSelect) {
                 option.value = user.id;
                 option.text = user.username;
                 userSelect.appendChild(option);
+
+                // Store reference to the listItem and option in the array
+                elementsArray.push(listItem);
+                elementsArray.push(option);
             });
         })
         .catch((error) => console.error('Error:', error));
@@ -78,6 +85,8 @@ function renderSkillsForUser(userId) {
                 const listItem = document.createElement('li');
                 listItem.textContent = skill;
                 skillsList.appendChild(listItem);
+                // Store reference to the listItem and option in the array
+                elementsArray.push(listItem);
             });
         })
         .catch((error) => console.error('Error:', error));
