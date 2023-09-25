@@ -69,7 +69,9 @@ function populateUserList(userSelect) {
 
 function renderSkillsForUser(userId) {
     const skillsList = document.getElementById('skills-list');
-
+    if(userId < 0){
+        return;
+    }
     fetch(`/api/admin/user/${userId}/skills`, {
         method: 'GET',
         headers: {
