@@ -64,7 +64,7 @@ function getUser(username, password) {
 function getSkills(userId) {
     console.log("Getting skills for user with id: " + userId);
     const usersData = readUsersData();
-    const user = usersData.users.find(user => user.id === userId);
+    const user = usersData.users.find(user => user.id == userId);
     return user ? user.skills : null;
 }
 
